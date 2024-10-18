@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Create 
+  body 
+    h1 Create 
+    if errors
+        ul 
+            each err in errors 
+                li= err.msg
+    form(action="/book/create", method="post")
+            div 
+                label(for="title") title 
+                input(type="text", id="title", name="title" required)
+                if errors && errors.find(err=>err.path =='title')
+                    span= errors.find(err => err.path == 'title').msg    
+            div 
+                label(for="author") author 
+                input(type="text", id="author", name="author" required) 
+                if errors && errors.find(err=>err.path =='author')
+                    span= errors.find(err => err.path == 'author').msg   
+            div 
+                label(for="publicationYear") publicationYear
+                input(type="text", id="publicationYear", name="publicationYear" required)   
+                if errors && errors.find(err=>err.path =='publicationYear')
+                    span= errors.find(err => err.path == 'publicationYear').msg 
+            div 
+                label(for="genre") genre 
+                input(type="text", id="genre", name="genre" required)  
+                if errors && errors.find(err=>err.path =='genre')
+                    span= errors.find(err => err.path == 'genre').msg       
+            div 
+                input(type="submit",value="Create")
